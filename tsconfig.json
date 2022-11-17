@@ -1,6 +1,17 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "baseUrl": ".",
+    "paths": {
+      "@screens/*": ["./src/screens/*"],
+      "@components/*": ["./src/components/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@common/*": ["./src/common/*"],
+      "@typings/*": ["./src/typings/*"],
+      "@repositories/*": ["./src/repositories/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@style/*": ["./src/style/*"]
+    }
+  },
+  "extends": "expo/tsconfig.base",
+  "exclude": ["node_modules", "dist"]
 }

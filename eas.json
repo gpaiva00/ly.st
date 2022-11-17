@@ -1,0 +1,25 @@
+{
+  "cli": {
+    "version": ">= 0.34.0",
+    "requireCommit": true
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "serviceAccountKeyPath": "/Projetos/api-6811391896440542804-295869-926076d6fc68.json",
+        "track": "internal",
+        "releaseStatus": "draft"
+      }
+    }
+  }
+}
