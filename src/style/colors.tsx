@@ -1,6 +1,9 @@
 export default {
-  primary: '#f9a2a2',
+  primary: '#f27171',
+  completed: '#f27171',
   black: '#252525',
-  background: '#f2f2f2',
+  background: '#f3f3f3',
   gray: '#7F8487',
+  lightGray: '#dedcdc',
+  danger: '#de3333',
 }

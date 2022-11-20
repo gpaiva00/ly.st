@@ -4,18 +4,17 @@ import { StatusBar } from 'expo-status-bar'
 import React, { useCallback } from 'react'
 import { View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { RootSiblingParent } from 'react-native-root-siblings'
 import Routes from './src/Routes'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Black: require('./assets/fonts/Montserrat-Black.ttf'),
-    Bold: require('./assets/fonts/Montserrat-Bold.ttf'),
-    ExtraBold: require('./assets/fonts/Montserrat-ExtraBold.ttf'),
-    Light: require('./assets/fonts/Montserrat-Light.ttf'),
-    Medium: require('./assets/fonts/Montserrat-Medium.ttf'),
-    Regular: require('./assets/fonts/Montserrat-Regular.ttf'),
-    Semibold: require('./assets/fonts/Montserrat-SemiBold.ttf'),
-    Thin: require('./assets/fonts/Montserrat-Thin.ttf'),
+    Black: require('./assets/fonts/Roboto-Black.ttf'),
+    Bold: require('./assets/fonts/Roboto-Bold.ttf'),
+    Light: require('./assets/fonts/Roboto-Light.ttf'),
+    Medium: require('./assets/fonts/Roboto-Medium.ttf'),
+    Regular: require('./assets/fonts/Roboto-Regular.ttf'),
+    Thin: require('./assets/fonts/Roboto-Thin.ttf'),
   })
 
   const onLayoutRootView = useCallback(async () => {
@@ -35,7 +34,9 @@ export default function App() {
         style={{ flex: 1 }}
         onLayout={onLayoutRootView}>
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <Routes />
+          <RootSiblingParent>
+            <Routes />
+          </RootSiblingParent>
         </GestureHandlerRootView>
       </View>
     </>
