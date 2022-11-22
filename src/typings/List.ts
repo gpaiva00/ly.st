@@ -1,9 +1,12 @@
+import { HistoryItem } from "@typings/History";
+
 export interface List {
   id: string;
   title: string;
   spendingLimit: number;
   items: ListItem[];
-  total: number;
+  total: string;
+  history: HistoryItem[];
 }
 
 export interface ListItem {

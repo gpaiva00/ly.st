@@ -1,15 +1,15 @@
 import tw from '@lib/twrnc'
-import { ListVariant } from '@typings/ListVariant'
+import { Variants } from '@typings/ListVariant'
 import { Text } from 'react-native'
 
-export default function ListTitle({ variant, children }: ListTitleProps) {
+export default function ListTitle({ variant = 'default', children }: ListTitleProps) {
   return (
     <Text
       style={tw.style('font-regular', {
         'text-danger': variant === 'danger',
         'text-black': variant === 'default',
-        'text-primary': variant === 'primary' || variant === 'completed',
-        'line-through': variant === 'completed',
+        'text-primary': variant === 'primary',
+        'line-through opacity-50 text-gray': variant === 'completed',
       })}>
       {children}
     </Text>
@@ -17,6 +17,6 @@ export default function ListTitle({ variant, children }: ListTitleProps) {
 }
 
 interface ListTitleProps {
-  variant?: ListVariant
+  variant?: Variants
   children: React.ReactNode
 }

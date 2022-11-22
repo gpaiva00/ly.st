@@ -1,28 +1,33 @@
-import { MEDIUM_ICON_SIZE } from '@common/iconSizes'
 import Button from '@components/Button'
+import ContentTitle from '@components/ContentTitle'
+import CustomCurrencyInput from '@components/CurrencyInput'
 import DefaultContainer from '@components/DefaultContainer'
+import Divider from '@components/Divider'
 import Expandable from '@components/Expandable'
 import Header from '@components/Header'
 import ListItem from '@components/ListItem'
-import TextInput from '@components/TextInput'
 import TextPlaceholder from '@components/TextPlaceholder'
 import tw from '@lib/twrnc'
 import { getList as getListFromStorage, updateList } from '@repositories/List'
 import colors from '@style/colors'
-import { List } from '@typings/List'
+import { ICON_SIZES } from '@style/sizes'
+import { Category } from '@typings/Category'
+import { ItemsByCategory, List } from '@typings/List'
+import { getCategoryTitleByID } from '@utils/getCategoryByID'
+import { separateByCategory } from '@utils/separateByCategory'
 import { ClockClockwise, Question } from 'phosphor-react-native'
 import React, { useEffect, useState } from 'react'
 import { Alert, ScrollView, View } from 'react-native'
 import Toast from 'react-native-root-toast'
 
 export default function ListConfigs({ navigation, route }) {
-  const { list }: RouteProps = route.params
+  const { list, categories }: RouteProps = route.params
 
-  const [spendingLimit, setSpendingLimit] = useState('')
+  const [spendingLimit, setSpendingLimit] = useState(null)
 
   const handleGoBack = () => navigation.goBack()
 
-  const handleOnChangeSpendingLimitInput = (value: string) => setSpendingLimit(value)
+  const handleOnChangeSpendingLimitInput = (value: number) => setSpendingLimit(value)
 
   const handleUpdateList = async () => {
     try {
@@ -40,15 +45,15 @@ export default function ListConfigs({ navigation, route }) {
 
   const handleClearAllPrices = async () => {
     Alert.alert(
-      'Limpar todos os preços',
-      'Tem certeza que deseja limpar todos os preços?',
+      'limpar todos os preços',
+      'tem certeza que deseja limpar todos os preços?',
       [
         {
-          text: 'Cancelar',
+          text: 'cancelar',
           style: 'cancel',
         },
         {
-          text: 'Sim',
+          text: 'sim',
           onPress: async () => {
             try {
               const newItems = list.items.map(item => ({
@@ -78,7 +83,7 @@ export default function ListConfigs({ navigation, route }) {
   const getSpendingLimitFromStorage = async () => {
     try {
       const listFromStorage = await getListFromStorage(list.id)
-      setSpendingLimit(String(listFromStorage.spendingLimit ?? ''))
+      setSpendingLimit(listFromStorage.spendingLimit ?? null)
     } catch (error) {
       console.log(error)
     }
@@ -101,7 +106,8 @@ export default function ListConfigs({ navigation, route }) {
             icon={
               <Question
                 color={colors.black}
-                size={MEDIUM_ICON_SIZE}
+                size={ICON_SIZES.MEDIUM}
+                weight="bold"
               />
             }
           />
@@ -113,17 +119,23 @@ export default function ListConfigs({ navigation, route }) {
         contentContainerStyle={tw`flex-grow pb-4`}
         showsVerticalScrollIndicator={false}>
         <Expandable title="limite de gastos da lista">
-          <TextInput
-            placeholder="valor em reais"
-            value={spendingLimit}
-            onChangeText={handleOnChangeSpendingLimitInput}
-            onSubmitEditing={handleUpdateList}
-            onBlur={handleUpdateList}
-            returnKeyLabel="Pronto"
-            keyboardType="numeric"
-            style={tw`mb-4`}
-            size="lg"
-          />
+          <View style={tw`flex-row items-center justify-between mb-4`}>
+            <CustomCurrencyInput
+              placeholder="R$ 0,00"
+              value={spendingLimit}
+              onChangeValue={handleOnChangeSpendingLimitInput}
+              onSubmitEditing={handleUpdateList}
+              onBlur={handleUpdateList}
+              returnKeyLabel="Pronto"
+              prefix="R$ "
+              size="md"
+            />
+            <Button
+              text="alterar"
+              onPress={handleUpdateList}
+              size="md"
+            />
+          </View>
         </Expandable>
 
         <ListItem
@@ -133,18 +145,60 @@ export default function ListConfigs({ navigation, route }) {
         />
 
         <Expandable title="histórico">
-          <View style={tw`flex-1 bg-lightGray`}>
-            <View style={tw`flex-1 items-center justify-center`}>
-              <TextPlaceholder
-                icon={
-                  <ClockClockwise
-                    size={MEDIUM_ICON_SIZE}
-                    color={colors.gray}
-                  />
-                }
-                text="sem histórico por enquanto"
-              />
-            </View>
+          <View style={tw`flex-1`}>
+            {!list?.history?.length && (
+              <View style={tw`flex-1 items-center justify-center py-10`}>
+                <TextPlaceholder
+                  icon={
+                    <ClockClockwise
+                      size={ICON_SIZES.MEDIUM}
+                      color={colors.gray}
+                    />
+                  }
+                  text="sem histórico por enquanto"
+                />
+              </View>
+            )}
+
+            {list?.history?.map(history => (
+              <View
+                key={history.id}
+                style={tw`flex-1 w-full items-start bg-lightGray px-5 py-3 mb-2`}>
+                <TextPlaceholder
+                  style={tw`mb-2`}
+                  text={`compras de ${history.createdAt}`}
+                />
+                {separateByCategory(history.listItems).map(
+                  ({ categoryID, items }: ItemsByCategory) => (
+                    <View
+                      key={categoryID}
+                      style={tw`flex-1 w-full`}>
+                      <ContentTitle
+                        variant="primary"
+                        alignCenter
+                        style={tw`py-2 font-regular`}>
+                        {getCategoryTitleByID(categoryID, categories)}
+                      </ContentTitle>
+
+                      {items.map(item => (
+                        <View style={tw`flex-row items-center justify-between`}>
+                          <TextPlaceholder text={item.title} />
+                          <TextPlaceholder text={`R$ ${item.price || 0}`} />
+                        </View>
+                      ))}
+                    </View>
+                  )
+                )}
+
+                <View style={tw`w-full mt-4 items-start`}>
+                  <View style={tw`w-full mb-2`}>
+                    <Divider variant="dark" />
+                  </View>
+                  <TextPlaceholder text="total" />
+                  <ContentTitle>{history.total}</ContentTitle>
+                </View>
+              </View>
+            ))}
           </View>
         </Expandable>
       </ScrollView>
@@ -154,4 +208,5 @@ export default function ListConfigs({ navigation, route }) {
 
 interface RouteProps {
   list: List
+  categories: Category[]
 }

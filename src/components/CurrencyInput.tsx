@@ -1,19 +1,19 @@
-import { TextInput as NativeTextInput, TextInputProps } from 'react-native'
+import CurrencyInput, { CurrencyInputProps } from 'react-native-currency-input'
 
 import tw from '@lib/twrnc'
 import colors from '@style/colors'
 import { INPUT_SIZE } from '@style/sizes'
 
-export default function TextInput({
+export default function CustomCurrencyInput({
   placeholder,
   value,
-  onChangeText,
+  onChangeValue,
   size = 'full',
   style,
   ...props
-}: CustomTextInputProps) {
+}: CustomCurrencyInputProps) {
   return (
-    <NativeTextInput
+    <CurrencyInput
       style={tw.style(
         'border border-gray rounded-lg px-2 w-full',
         {
@@ -29,16 +29,17 @@ export default function TextInput({
       placeholder={placeholder}
       placeholderTextColor={colors.gray}
       value={value}
-      onChangeText={onChangeText}
+      onChangeValue={onChangeValue}
       autoCapitalize="none"
       {...props}
     />
   )
 }
 
-interface CustomTextInputProps extends TextInputProps {
+interface CustomCurrencyInputProps extends CurrencyInputProps {
   placeholder: string
-  value?: string
+  value?: number
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'full'
   style?: string
+  onChangeValue: (value: number) => void
 }

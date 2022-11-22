@@ -1,5 +1,5 @@
 import tw from '@lib/twrnc'
-import { ListVariant } from '@typings/ListVariant'
+import { Variants } from '@typings/ListVariant'
 import React from 'react'
 import { View } from 'react-native'
 
@@ -8,11 +8,12 @@ export default function Divider({ variant }: DividerProps) {
     <View
       style={tw.style('border-b-[1px] border-b-lightGray', {
         'border-b-primary': variant === 'primary',
+        'border-b-gray': variant === 'dark',
       })}
     />
   )
 }
 
 interface DividerProps {
-  variant?: ListVariant
+  variant?: Variants
 }

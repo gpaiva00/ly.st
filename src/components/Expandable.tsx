@@ -1,13 +1,13 @@
-import { SMALL_ICON_SIZE } from '@common/iconSizes'
 import ContentTitle from '@components/ContentTitle'
 import Divider from '@components/Divider'
 import ListTitle from '@components/ListTitle'
 import tw from '@lib/twrnc'
 import colors from '@style/colors'
-import { ListVariant } from '@typings/ListVariant'
+import { ICON_SIZES } from '@style/sizes'
+import { Variants } from '@typings/ListVariant'
 import { CaretRight, Check } from 'phosphor-react-native'
 import React, { useState } from 'react'
-import { TouchableWithoutFeedback, View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 
 export default function Expandable({
   title,
@@ -28,25 +28,28 @@ export default function Expandable({
   return (
     <>
       <View style={tw.style('', style)}>
-        <TouchableWithoutFeedback
+        <TouchableOpacity
           onPress={toggleShowContent}
           onLongPress={onLongPress}>
           <View style={tw`flex-row items-center justify-between py-3`}>
             {highlight ? (
               <ContentTitle variant="primary">{title}</ContentTitle>
             ) : (
-              <ListTitle variant={variant}>{title}</ListTitle>
+              <ListTitle variant={showContent ? 'default' : variant}>{title}</ListTitle>
             )}
-            {variant === 'completed' ? (
+            {variant === 'completed' && !showContent ? (
               <Check
-                size={SMALL_ICON_SIZE}
+                size={ICON_SIZES.SMALL}
                 color={colors.completed}
                 weight="bold"
               />
             ) : (
               <CaretRight
-                size={SMALL_ICON_SIZE}
-                color={colors[variant] || colors.lightGray}
+                size={ICON_SIZES.SMALL}
+                color={
+                  colors[showContent && !highlight ? 'lightGray' : variant] ||
+                  colors.lightGray
+                }
                 weight="bold"
                 style={tw.style({
                   transform: showContent && [{ rotate: '90deg' }],
@@ -54,7 +57,7 @@ export default function Expandable({
               />
             )}
           </View>
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
 
         {showContent && children}
       </View>
@@ -64,7 +67,7 @@ export default function Expandable({
 }
 
 interface ExpandableProps {
-  variant?: ListVariant
+  variant?: Variants
   children: React.ReactNode
   title: string
   highlight?: boolean

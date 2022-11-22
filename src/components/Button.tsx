@@ -1,6 +1,7 @@
 import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
 
 import tw from '@lib/twrnc'
+import { INPUT_SIZE } from '@style/sizes'
 
 export default function Button({
   text,
@@ -15,13 +16,17 @@ export default function Button({
   return (
     <TouchableOpacity
       style={tw.style(
-        'flex-row items-center justify-center rounded-lg p-2',
+        'flex-row items-center justify-center rounded-lg',
         {
           'bg-transparent p-0': variant === 'transparent',
           'border border-primary': variant === 'secondary',
           'bg-primary': variant === 'primary',
           'bg-primary rounded-full h-auto': variant === 'circle-primary',
+          height: INPUT_SIZE,
           'h-6 w-6': size === 'sm',
+          'w-1/2': size === 'lg',
+          'w-1/3': size === 'md',
+          'w-full': size === 'full',
         },
         style
       )}
@@ -56,5 +61,5 @@ interface ButtonProps {
   isLoading?: boolean
   style?: string
   variant?: 'primary' | 'secondary' | 'transparent' | 'circle-primary'
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'full'
 }

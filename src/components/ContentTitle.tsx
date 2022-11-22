@@ -1,19 +1,31 @@
 import tw from '@lib/twrnc'
-import { ListVariant } from '@typings/ListVariant'
+import { Variants } from '@typings/ListVariant'
 import { Text } from 'react-native'
 
-export default function ContentTitle({ variant, children }: ContentTitleProps) {
+export default function ContentTitle({
+  variant,
+  children,
+  alignCenter = false,
+  style,
+}: ContentTitleProps) {
   return (
     <Text
-      style={tw.style('font-bold text-black', {
-        'text-primary': variant === 'primary',
-      })}>
+      style={tw.style(
+        'font-bold text-black',
+        {
+          'text-primary': variant === 'primary',
+          'text-center': alignCenter,
+        },
+        style
+      )}>
       {children}
     </Text>
   )
 }
 
 interface ContentTitleProps {
-  variant?: ListVariant
+  variant?: Variants
   children: React.ReactNode
+  alignCenter?: boolean
+  style?: any
 }

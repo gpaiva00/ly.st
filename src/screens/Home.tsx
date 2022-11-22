@@ -1,4 +1,3 @@
-import { MEDIUM_ICON_SIZE } from '@common/iconSizes'
 import routeNames from '@common/routesNames'
 import Button from '@components/Button'
 import DefaultContainer from '@components/DefaultContainer'
@@ -14,6 +13,7 @@ import {
   getLists as getListsFromStorage,
 } from '@repositories/List'
 import colors from '@style/colors'
+import { ICON_SIZES } from '@style/sizes'
 import { List } from '@typings/List'
 import generateID from '@utils/generateID'
 import { TagSimple } from 'phosphor-react-native'
@@ -55,13 +55,13 @@ export default function Home({ navigation }) {
     navigation.navigate(routeNames.LIST, { listParam: list })
 
   const handleOnLongPressItem = (item: List) => {
-    Alert.alert('remover lista', 'Tem certeza que deseja remover essa lista?', [
+    Alert.alert('remover lista', 'tem certeza que deseja remover essa lista?', [
       {
         text: 'cancelar',
         style: 'cancel',
       },
       {
-        text: 'remover',
+        text: 'sim',
         onPress: () => {
           try {
             deleteList(item.id).then(() => {
@@ -91,23 +91,31 @@ export default function Home({ navigation }) {
             variant="transparent"
             icon={
               <TagSimple
-                size={MEDIUM_ICON_SIZE}
+                size={ICON_SIZES.MEDIUM}
                 color={colors.black}
+                weight="bold"
               />
             }
           />
         }
       />
 
-      <TextInput
-        placeholder="nova da lista"
-        value={newList?.title}
-        onChangeText={handleOnChangeInputText}
-        spellCheck={false}
-        onSubmitEditing={handleAddList}
-        style={tw`mb-6`}
-        returnKeyLabel="Pronto"
-      />
+      <View style={tw`flex-row items-center justify-between mb-4`}>
+        <TextInput
+          placeholder="nome da lista"
+          value={newList?.title}
+          onChangeText={handleOnChangeInputText}
+          spellCheck={false}
+          onSubmitEditing={handleAddList}
+          returnKeyLabel="Pronto"
+          style={tw`w-[200px]`}
+        />
+        <Button
+          text="adicionar"
+          onPress={handleAddList}
+          size="md"
+        />
+      </View>
 
       <Divider />
 
@@ -117,7 +125,7 @@ export default function Home({ navigation }) {
         showsVerticalScrollIndicator={false}>
         {!lists.length && (
           <View style={tw`flex-1 justify-center items-center`}>
-            <TextPlaceholder text="insira o nome da lista e aperte Pronto" />
+            <TextPlaceholder text="sem listas por enquanto" />
           </View>
         )}
 

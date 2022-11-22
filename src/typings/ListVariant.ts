@@ -1,2 +1,2 @@
-export type ListVariant = 'danger' | 'completed' | 'default' | 'primary'
+export type Variants = 'danger' | 'completed' | 'default' | 'primary' | 'dark'
   

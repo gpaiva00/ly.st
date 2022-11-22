@@ -1,4 +1,5 @@
-import { SMALL_ICON_SIZE } from '@common/iconSizes'
+import DEFAULT_CATEGORIES from '@common/defaultCategories'
+import Button from '@components/Button'
 import DefaultContainer from '@components/DefaultContainer'
 import Divider from '@components/Divider'
 import Header from '@components/Header'
@@ -8,13 +9,13 @@ import TextPlaceholder from '@components/TextPlaceholder'
 import tw from '@lib/twrnc'
 import {
   createCategory,
+  createDefaultCategories,
   deleteCategory,
   getCategories as getCategoriesFromStorage,
 } from '@repositories/Category'
-import colors from '@style/colors'
 import { Category } from '@typings/Category'
 import generateID from '@utils/generateID'
-import { TagSimple } from 'phosphor-react-native'
+import isAppRunningFirstTime from '@utils/isAppRunningFirstTime'
 import React, { useEffect, useState } from 'react'
 import { Alert, ScrollView, View } from 'react-native'
 import Toast from 'react-native-root-toast'
@@ -30,7 +31,7 @@ export default function Categories({ navigation }) {
 
   const handleAddCategory = async () => {
     try {
-      if (!newCategory?.title) Toast.show('insira um nome para sua categoria')
+      if (!newCategory?.title) return Toast.show('insira um nome para sua categoria')
 
       const newCategoryWithId = { ...newCategory, id: generateID() }
 
@@ -43,13 +44,13 @@ export default function Categories({ navigation }) {
   }
 
   const handleOnLongPressItem = (item: Category) => {
-    Alert.alert('remover categoria', 'Tem certeza que deseja remover essa categoria?', [
+    Alert.alert('remover categoria', 'tem certeza que deseja remover essa categoria?', [
       {
         text: 'cancelar',
         style: 'cancel',
       },
       {
-        text: 'remover',
+        text: 'sim',
         onPress: () => {
           try {
             deleteCategory(item.id).then(() => {
@@ -65,7 +66,14 @@ export default function Categories({ navigation }) {
 
   const getCategories = async () => {
     try {
-      const categories = await getCategoriesFromStorage()
+      let categories = await getCategoriesFromStorage()
+      const runningFirstTime = await isAppRunningFirstTime()
+
+      if (runningFirstTime) {
+        createDefaultCategories()
+        categories = DEFAULT_CATEGORIES
+      }
+
       setCategories(categories)
     } catch (error) {
       console.log(error)
@@ -87,16 +95,23 @@ export default function Categories({ navigation }) {
         onPressBackButton={handleGoBack}
       />
 
-      <TextInput
-        placeholder="ex: comidas, bebidas, produtos de limpeza, etc."
-        value={newCategory?.title}
-        onChangeText={handleOnChangeInputText}
-        spellCheck={false}
-        autoFocus
-        onSubmitEditing={handleAddCategory}
-        returnKeyLabel="Pronto"
-        style={tw`mb-6`}
-      />
+      <View style={tw`flex-row items-center justify-between mb-4`}>
+        <TextInput
+          placeholder="ex: comidas, bebidas, etc."
+          value={newCategory?.title}
+          onChangeText={handleOnChangeInputText}
+          spellCheck={false}
+          autoFocus
+          onSubmitEditing={handleAddCategory}
+          returnKeyLabel="Pronto"
+          style={tw`w-[200px]`}
+        />
+        <Button
+          text="adicionar"
+          onPress={handleAddCategory}
+          size="md"
+        />
+      </View>
 
       <Divider />
 
@@ -122,13 +137,13 @@ export default function Categories({ navigation }) {
               <ListItem
                 key={list.id}
                 item={list}
-                icon={
-                  <TagSimple
-                    size={SMALL_ICON_SIZE}
-                    color={colors.primary}
-                    weight="fill"
-                  />
-                }
+                // icon={
+                //   <TagSimple
+                //     size={SMALL_ICON_SIZE}
+                //     color={colors.primary}
+                //     weight="fill"
+                //   />
+                // }
                 onLongPress={() => handleOnLongPressItem(list)}
               />
             ))}

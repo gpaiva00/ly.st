@@ -1,9 +1,9 @@
-import { SMALL_ICON_SIZE } from '@common/iconSizes'
 import Button from '@components/Button'
 import ScreenSubtitle from '@components/ScreenSubtitle'
 import ScreenTitle from '@components/ScreenTitle'
 import tw from '@lib/twrnc'
 import colors from '@style/colors'
+import { ICON_SIZES } from '@style/sizes'
 import { CaretLeft } from 'phosphor-react-native'
 import React from 'react'
 import { View } from 'react-native'
@@ -25,7 +25,7 @@ export default function Header({
             icon={
               <CaretLeft
                 color={colors.black}
-                size={SMALL_ICON_SIZE}
+                size={ICON_SIZES.MEDIUM}
                 weight="bold"
               />
             }
