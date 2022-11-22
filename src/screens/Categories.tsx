@@ -101,7 +101,6 @@ export default function Categories({ navigation }) {
           value={newCategory?.title}
           onChangeText={handleOnChangeInputText}
           spellCheck={false}
-          autoFocus
           onSubmitEditing={handleAddCategory}
           returnKeyLabel="Pronto"
           style={tw`w-[200px]`}

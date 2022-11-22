@@ -4,6 +4,6 @@ export default {
   black: '#252525',
   background: '#f3f3f3',
   gray: '#7F8487',
-  lightGray: '#dedcdc',
+  lightGray: '#c4c4c4',
   danger: '#de3333',
 }

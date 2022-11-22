@@ -6,7 +6,7 @@ import { View } from 'react-native'
 export default function Divider({ variant }: DividerProps) {
   return (
     <View
-      style={tw.style('border-b-[1px] border-b-lightGray', {
+      style={tw.style('border-b-[0.5px] border-b-lightGray', {
         'border-b-primary': variant === 'primary',
         'border-b-gray': variant === 'dark',
       })}

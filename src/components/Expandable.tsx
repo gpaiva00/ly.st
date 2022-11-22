@@ -15,6 +15,7 @@ export default function Expandable({
   variant = 'default',
   highlight = false,
   style,
+  titleStyle,
   onToggle = () => {},
   onLongPress = () => {},
 }: ExpandableProps) {
@@ -33,9 +34,17 @@ export default function Expandable({
           onLongPress={onLongPress}>
           <View style={tw`flex-row items-center justify-between py-3`}>
             {highlight ? (
-              <ContentTitle variant="primary">{title}</ContentTitle>
+              <ContentTitle
+                variant="primary"
+                style={tw.style(titleStyle)}>
+                {title}
+              </ContentTitle>
             ) : (
-              <ListTitle variant={showContent ? 'default' : variant}>{title}</ListTitle>
+              <ListTitle
+                variant={showContent ? 'default' : variant}
+                style={tw.style(titleStyle)}>
+                {title}
+              </ListTitle>
             )}
             {variant === 'completed' && !showContent ? (
               <Check
@@ -72,6 +81,7 @@ interface ExpandableProps {
   title: string
   highlight?: boolean
   style?: string
+  titleStyle?: string
   onToggle?: (showContent: boolean) => void
   onLongPress?: () => void
 }

@@ -11,7 +11,7 @@ export default function ContentTitle({
   return (
     <Text
       style={tw.style(
-        'font-bold text-black',
+        'font-semibold text-black',
         {
           'text-primary': variant === 'primary',
           'text-center': alignCenter,

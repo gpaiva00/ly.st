@@ -16,7 +16,7 @@ export default function Button({
   return (
     <TouchableOpacity
       style={tw.style(
-        'flex-row items-center justify-center rounded-lg',
+        'flex-row items-center justify-center rounded-xl',
         {
           'bg-transparent p-0': variant === 'transparent',
           'border border-primary': variant === 'secondary',

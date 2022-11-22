@@ -163,7 +163,7 @@ export default function ListConfigs({ navigation, route }) {
             {list?.history?.map(history => (
               <View
                 key={history.id}
-                style={tw`flex-1 w-full items-start bg-lightGray px-5 py-3 mb-2`}>
+                style={tw`flex-1 w-full items-start bg-white rounded-xl px-5 py-3 mb-2`}>
                 <TextPlaceholder
                   style={tw`mb-2`}
                   text={`compras de ${history.createdAt}`}
@@ -181,7 +181,9 @@ export default function ListConfigs({ navigation, route }) {
                       </ContentTitle>
 
                       {items.map(item => (
-                        <View style={tw`flex-row items-center justify-between`}>
+                        <View
+                          key={item.id}
+                          style={tw`flex-row items-center justify-between`}>
                           <TextPlaceholder text={item.title} />
                           <TextPlaceholder text={`R$ ${item.price || 0}`} />
                         </View>
@@ -192,7 +194,7 @@ export default function ListConfigs({ navigation, route }) {
 
                 <View style={tw`w-full mt-4 items-start`}>
                   <View style={tw`w-full mb-2`}>
-                    <Divider variant="dark" />
+                    <Divider />
                   </View>
                   <TextPlaceholder text="total" />
                   <ContentTitle>{history.total}</ContentTitle>

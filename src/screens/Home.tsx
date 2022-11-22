@@ -78,7 +78,11 @@ export default function Home({ navigation }) {
   const handleOnChangeInputText = (title: string) => setNewList({ ...newList, title })
 
   useEffect(() => {
-    getLists()
+    const unsubscribe = navigation.addListener('focus', () => {
+      getLists()
+    })
+
+    return unsubscribe
   }, [])
 
   return (

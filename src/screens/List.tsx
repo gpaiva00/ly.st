@@ -72,7 +72,7 @@ export default function List({ navigation, route }) {
     setNewItem({ ...newItem, categoryID })
   }
 
-  const handleAddItem = async (data: ListItemTyping) => {
+  const handleAddItem = (data: ListItemTyping) => {
     try {
       if (!data?.title) return Toast.show('insira um nome para o item')
       if (!data?.categoryID) return Toast.show('selecione uma categoria')
@@ -85,8 +85,7 @@ export default function List({ navigation, route }) {
       }
 
       setList(newList)
-      await updateList(list)
-
+      updateList(newList)
       clearFields()
       Toast.show('item adicionado com sucesso')
     } catch (error) {
@@ -136,7 +135,7 @@ export default function List({ navigation, route }) {
       },
       {
         text: 'sim',
-        onPress: async () => {
+        onPress: () => {
           const newItems = list.items.filter(item => item.id !== itemID)
           const newList = {
             ...list,
@@ -144,7 +143,7 @@ export default function List({ navigation, route }) {
           }
 
           setList(newList)
-          await updateList(list)
+          updateListTotal(newList)
           Toast.show('item removido com sucesso')
         },
       },
@@ -172,7 +171,6 @@ export default function List({ navigation, route }) {
 
       setList(newList)
       updateListTotal(newList)
-      updateList(list)
     } catch (error) {
       console.log(error)
     }
@@ -198,13 +196,12 @@ export default function List({ navigation, route }) {
 
       setList(newList)
       updateListTotal(newList)
-      updateList(list)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const updateListTotal = async (list: ListTyping) => {
+  const updateListTotal = (list: ListTyping) => {
     try {
       const total = calculateListTotal(list.items)
         .toLocaleString('pt-br', {
@@ -219,13 +216,15 @@ export default function List({ navigation, route }) {
       }
 
       setList(newList)
-      updateList(list)
+      updateList(newList)
     } catch (error) {
       console.log(error)
     }
   }
 
   const handleOnPressFinishList = () => {
+    if (!list.items.length) return Toast.show('adicione itens para finalizar a lista')
+
     Alert.alert(
       'finalizar compras',
       'os preços serão zerados e tudo será salvo no histórico da lista',
@@ -236,7 +235,7 @@ export default function List({ navigation, route }) {
         },
         {
           text: 'finalizar',
-          onPress: async () => {
+          onPress: () => {
             try {
               const historyItem: HistoryItem = {
                 id: generateID(),
@@ -260,7 +259,7 @@ export default function List({ navigation, route }) {
               }
 
               setList(newList)
-              await updateList(newList)
+              updateList(newList)
             } catch (error) {
               console.log(error)
             }
@@ -283,7 +282,7 @@ export default function List({ navigation, route }) {
     <>
       <View style={tw`flex-1 bg-background pt-10 ios:pt-12`}>
         <Header
-          title={list.title}
+          title={list?.title}
           onPressBackButton={handleGoBack}
           options={
             <Button
@@ -367,13 +366,13 @@ export default function List({ navigation, route }) {
             )}
 
             <View style={tw`flex-1 px-5 pb-40`}>
-              {!list.items.length && (
+              {!list?.items?.length && (
                 <View style={tw`flex-1 items-center justify-center`}>
                   <TextPlaceholder text="sem itens por enquanto" />
                 </View>
               )}
 
-              {separateByCategory(list.items).map(
+              {separateByCategory(list?.items).map(
                 ({ categoryID, items }: ItemsByCategory) => (
                   <View key={categoryID}>
                     <ContentTitle
@@ -474,7 +473,7 @@ export default function List({ navigation, route }) {
           style={tw`flex-1 flex-row px-5 items-center justify-between h-16 ios:h-20 bg-background`}>
           <View style={tw`items-start`}>
             <TextPlaceholder text="total" />
-            <ScreenTitle>{list.total || 'R$ 0,00'}</ScreenTitle>
+            <ScreenTitle>{list?.total || 'R$ 0,00'}</ScreenTitle>
           </View>
 
           <Button

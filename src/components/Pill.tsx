@@ -12,7 +12,7 @@ export default function Pill({
   return (
     <TouchableOpacity
       style={tw.style(
-        'flex-row items-center justify-between rounded-lg px-2 mr-2 mb-2 border-[1px] border-primary',
+        'flex-row items-center justify-between rounded-xl px-2 mr-2 mb-2 border-[1px] border-primary',
         {
           'bg-primary': variant === 'primary',
           'bg-white': variant === 'secondary',

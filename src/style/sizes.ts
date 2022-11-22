@@ -6,3 +6,5 @@ export const ICON_SIZES = {
 }
 
 export const INPUT_SIZE = 36
+
+export const  DEFAULT_BORDER_RADIUS = 10
