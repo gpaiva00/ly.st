@@ -40,6 +40,7 @@ export default function List({ navigation, route }) {
   const [list, setList] = useState<ListTyping>(listParam)
   const [itemName, setItemName] = useState('')
   const [showOverlay, setShowOverlay] = useState(false)
+  const [listProgress, setListProgress] = useState(0)
 
   const handleGoBack = () => navigation.goBack()
 
@@ -119,6 +120,8 @@ export default function List({ navigation, route }) {
   const getList = async () => {
     try {
       const listFromStorage = await getListFromStorage(listParam.id)
+      const newListProgress = calculateProgress(listFromStorage)
+      setListProgress(newListProgress)
       setList(listFromStorage)
     } catch (error) {
       console.log(error)
@@ -215,8 +218,13 @@ export default function List({ navigation, route }) {
         total,
       }
 
+      const newListProgress = calculateProgress(newList)
+
+      if (newListProgress >= 100) Toast.show('atenção: limite de gastos atingido')
+
       setList(newList)
       updateList(newList)
+      setListProgress(newListProgress)
     } catch (error) {
       console.log(error)
     }
@@ -224,6 +232,10 @@ export default function List({ navigation, route }) {
 
   const handleOnPressFinishList = () => {
     if (!list.items.length) return Toast.show('adicione itens para finalizar a lista')
+
+    const isAllPricesEmpty = list.items.every(item => !item.price)
+
+    if (isAllPricesEmpty) return Toast.show('todos os itens estão sem preço')
 
     Alert.alert(
       'finalizar compras',
@@ -258,8 +270,11 @@ export default function List({ navigation, route }) {
                 total: 'R$ 0,00',
               }
 
+              const newListProgress = calculateProgress(newList)
+
               setList(newList)
               updateList(newList)
+              setListProgress(newListProgress)
             } catch (error) {
               console.log(error)
             }
@@ -468,7 +483,7 @@ export default function List({ navigation, route }) {
 
       {/* bottom panel */}
       <View style={tw`flex-1 absolute bottom-0 w-full`}>
-        <ProgressBar progress={calculateProgress(list)} />
+        <ProgressBar progress={listProgress} />
         <View
           style={tw`flex-1 flex-row px-5 items-center justify-between h-16 ios:h-20 bg-background`}>
           <View style={tw`items-start`}>

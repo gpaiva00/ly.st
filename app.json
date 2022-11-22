@@ -3,6 +3,7 @@
     "name": "market list",
     "slug": "market-list",
     "version": "1.0.0",
+    "owner": "gpaiva",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

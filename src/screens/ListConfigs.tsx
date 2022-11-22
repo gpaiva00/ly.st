@@ -27,6 +27,8 @@ export default function ListConfigs({ navigation, route }) {
 
   const handleGoBack = () => navigation.goBack()
 
+  const handleGoToHelp = () => Toast.show('em breve')
+
   const handleOnChangeSpendingLimitInput = (value: number) => setSpendingLimit(value)
 
   const handleUpdateList = async () => {
@@ -101,7 +103,7 @@ export default function ListConfigs({ navigation, route }) {
         onPressBackButton={handleGoBack}
         options={
           <Button
-            onPress={() => {}}
+            onPress={handleGoToHelp}
             variant="transparent"
             icon={
               <Question
@@ -184,7 +186,12 @@ export default function ListConfigs({ navigation, route }) {
                         <View
                           key={item.id}
                           style={tw`flex-row items-center justify-between`}>
-                          <TextPlaceholder text={item.title} />
+                          <View style={tw`flex-row`}>
+                            <TextPlaceholder text={item.title} />
+                            {item.quantity > 1 && (
+                              <TextPlaceholder text={` x ${item.quantity}`} />
+                            )}
+                          </View>
                           <TextPlaceholder text={`R$ ${item.price || 0}`} />
                         </View>
                       ))}
