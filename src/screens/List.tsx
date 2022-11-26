@@ -366,6 +366,7 @@ export default function List({ navigation, route }) {
               text="adicionar"
               onPress={() => handleAddItem(newItem)}
               style={tw`mt-2 mb-5`}
+              size="full"
             />
           </View>
         </Expandable>
