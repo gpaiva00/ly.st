@@ -100,6 +100,7 @@ export default function Home({ navigation }) {
                 weight="bold"
               />
             }
+            size="sm"
           />
         }
       />
@@ -117,7 +118,6 @@ export default function Home({ navigation }) {
         <Button
           text="adicionar"
           onPress={handleAddList}
-          size="md"
         />
       </View>
 

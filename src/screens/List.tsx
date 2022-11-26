@@ -310,6 +310,7 @@ export default function List({ navigation, route }) {
                   weight="bold"
                 />
               }
+              size="sm"
             />
           }
           style={tw`px-5`}
@@ -487,14 +488,13 @@ export default function List({ navigation, route }) {
         <View
           style={tw`flex-1 flex-row px-5 items-center justify-between h-16 ios:h-20 bg-background`}>
           <View style={tw`items-start`}>
-            <TextPlaceholder text="total" />
+            <TextPlaceholder text={`total・${list.items.length} itens`} />
             <ScreenTitle>{list?.total || 'R$ 0,00'}</ScreenTitle>
           </View>
 
           <Button
             text="finalizar"
             onPress={handleOnPressFinishList}
-            variant="transparent"
           />
         </View>
       </View>

@@ -27,8 +27,10 @@ export default function Header({
                 color={colors.black}
                 size={ICON_SIZES.MEDIUM}
                 weight="bold"
+                style={tw`shadow-lg`}
               />
             }
+            size="sm"
             style={tw`mr-2`}
           />
         )}

@@ -10,7 +10,7 @@ export default function ListTitle({
   return (
     <Text
       style={tw.style(
-        'font-regular',
+        'font-regular text-base',
         {
           'text-danger': variant === 'danger',
           'text-black': variant === 'default',

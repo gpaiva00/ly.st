@@ -10,13 +10,13 @@ export default function Button({
   isLoading,
   style,
   variant = 'primary',
-  size,
+  size = 'md',
   ...props
 }: ButtonProps) {
   return (
     <TouchableOpacity
       style={tw.style(
-        'flex-row items-center justify-center rounded-xl',
+        'flex-row items-center justify-center rounded-xl shadow-lg',
         {
           'bg-transparent p-0': variant === 'transparent',
           'border border-primary': variant === 'secondary',

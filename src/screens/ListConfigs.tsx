@@ -112,6 +112,7 @@ export default function ListConfigs({ navigation, route }) {
                 weight="bold"
               />
             }
+            size="sm"
           />
         }
       />

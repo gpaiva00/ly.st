@@ -15,7 +15,7 @@ export default function TextInput({
   return (
     <NativeTextInput
       style={tw.style(
-        'border-[0.5px] border-lightGray active:border-primary focus:border-primary rounded-xl px-2 w-full',
+        'border-[0.5px] border-lightGray active:border-primary focus:border-primary rounded-xl px-2 w-full shadow-lg',
         {
           'w-1/6': size === 'xs',
           'w-[50px]': size === 'sm',

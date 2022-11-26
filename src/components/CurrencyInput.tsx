@@ -15,7 +15,7 @@ export default function CustomCurrencyInput({
   return (
     <CurrencyInput
       style={tw.style(
-        'border border-lightGray rounded-xl px-2 w-full',
+        'border border-lightGray rounded-xl px-2 w-full shadow-lg',
         {
           'w-1/6': size === 'xs',
           'w-[50px]': size === 'sm',
