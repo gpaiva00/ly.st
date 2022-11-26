@@ -79,6 +79,7 @@ export default function List({ navigation, route }) {
       if (!data?.categoryID) return Toast.show('selecione uma categoria')
 
       data.id = generateID()
+      data.quantity = 1
 
       const newList = {
         ...list,
