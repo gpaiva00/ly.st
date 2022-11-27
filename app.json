@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "market list",
-    "slug": "market-list",
-    "version": "1.0.0",
+    "name": "ly.st",
+    "slug": "ly.st",
+    "version": "1.0.1",
     "owner": "gpaiva",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
