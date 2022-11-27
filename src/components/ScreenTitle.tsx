@@ -8,7 +8,7 @@ export default function ScreenTitle({ style, children }: TitleProps) {
     <Text
       numberOfLines={1}
       style={tw.style(
-        'font-black text-black shadow-md',
+        'font-black text-black shadow-sm',
         {
           'text-3xl': children.length <= CHAR_TITLE_LIMIT,
           'text-2xl flex-row max-w-[250px]': children.length > CHAR_TITLE_LIMIT,

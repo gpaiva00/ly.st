@@ -9,7 +9,8 @@
       "@typings/*": ["./src/typings/*"],
       "@repositories/*": ["./src/repositories/*"],
       "@utils/*": ["./src/utils/*"],
-      "@style/*": ["./src/style/*"]
+      "@style/*": ["./src/style/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
   "extends": "expo/tsconfig.base",

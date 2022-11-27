@@ -88,7 +88,7 @@ export default function Home({ navigation }) {
   return (
     <DefaultContainer>
       <Header
-        title="listas"
+        title="ly.st"
         options={
           <Button
             onPress={handleGoToCategories}

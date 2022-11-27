@@ -5,9 +5,9 @@ import { View } from 'react-native'
 
 export default function ProgressBar({ progress, variant = 'primary' }: ProgressBarProps) {
   return (
-    <View style={tw` w-full bg-lightGray h-[3px]`}>
+    <View style={tw` w-full bg-lightGray h-[3px] shadow-sm`}>
       <View
-        style={tw.style('h-[3px]', {
+        style={tw.style('h-[3px] shadow-sm', {
           width: `${progress}%`,
           'bg-primary': variant === 'primary',
         })}

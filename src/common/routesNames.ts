@@ -3,4 +3,5 @@ export default {
   CATEGORIES: "Categories",
   LIST: "List",
   LIST_CONFIGS: "ListConfigs",
+  ONBOARDING: "Onboarding",
 };

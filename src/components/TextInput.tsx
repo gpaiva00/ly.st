@@ -31,6 +31,7 @@ export default function TextInput({
       value={value}
       onChangeText={onChangeText}
       autoCapitalize="none"
+      clearButtonMode="while-editing"
       {...props}
     />
   )

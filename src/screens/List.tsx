@@ -1,4 +1,5 @@
 import routesNames from '@common/routesNames'
+import BottomPanel from '@components/BottomPanel'
 import Button from '@components/Button'
 import ContentTitle from '@components/ContentTitle'
 import CustomCurrencyInput from '@components/CurrencyInput'
@@ -6,8 +7,6 @@ import Divider from '@components/Divider'
 import Expandable from '@components/Expandable'
 import Header from '@components/Header'
 import Pill from '@components/Pill'
-import ProgressBar from '@components/ProgressBar'
-import ScreenTitle from '@components/ScreenTitle'
 import TextInput from '@components/TextInput'
 import TextPlaceholder from '@components/TextPlaceholder'
 import tw from '@lib/twrnc'
@@ -485,21 +484,11 @@ export default function List({ navigation, route }) {
       </View>
 
       {/* bottom panel */}
-      <View style={tw`flex-1 absolute bottom-0 w-full`}>
-        <ProgressBar progress={listProgress} />
-        <View
-          style={tw`flex-1 flex-row px-5 items-center justify-between h-16 ios:h-20 bg-background`}>
-          <View style={tw`items-start`}>
-            <TextPlaceholder text={`total・${list.items.length} itens`} />
-            <ScreenTitle>{list?.total || 'R$ 0,00'}</ScreenTitle>
-          </View>
-
-          <Button
-            text="finalizar"
-            onPress={handleOnPressFinishList}
-          />
-        </View>
-      </View>
+      <BottomPanel
+        progress={listProgress}
+        handleOnPressFinishList={handleOnPressFinishList}
+        list={list}
+      />
     </>
   )
 }

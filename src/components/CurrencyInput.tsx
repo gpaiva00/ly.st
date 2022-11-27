@@ -31,6 +31,7 @@ export default function CustomCurrencyInput({
       value={value}
       onChangeValue={onChangeValue}
       autoCapitalize="none"
+      clearButtonMode="while-editing"
       {...props}
     />
   )

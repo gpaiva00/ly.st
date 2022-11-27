@@ -1,4 +1,5 @@
 import routesNames from '@common/routesNames'
+import Onboarding from '@components/Onboarding'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Categories from '@screens/Categories'
@@ -8,14 +9,21 @@ import ListConfigs from '@screens/ListConfigs'
 
 const Stack = createNativeStackNavigator()
 
-export default function Routes() {
+export default function Routes({ initialRouteName }: { initialRouteName: string }) {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={routesNames.HOME}
+        initialRouteName={initialRouteName}
         defaultScreenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen
+          name={routesNames.ONBOARDING}
+          component={Onboarding}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name={routesNames.HOME}
           component={Home}

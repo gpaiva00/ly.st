@@ -1,4 +1,5 @@
 import DEFAULT_CATEGORIES from '@common/defaultCategories'
+import routesNames from '@common/routesNames'
 import Button from '@components/Button'
 import DefaultContainer from '@components/DefaultContainer'
 import Divider from '@components/Divider'
@@ -15,7 +16,7 @@ import {
 } from '@repositories/Category'
 import { Category } from '@typings/Category'
 import generateID from '@utils/generateID'
-import isAppRunningFirstTime from '@utils/isAppRunningFirstTime'
+import { isScreenRunningFirstTime } from '@utils/isAppRunningFirstTime'
 import React, { useEffect, useState } from 'react'
 import { Alert, ScrollView, View } from 'react-native'
 import Toast from 'react-native-root-toast'
@@ -67,7 +68,7 @@ export default function Categories({ navigation }) {
   const getCategories = async () => {
     try {
       let categories = await getCategoriesFromStorage()
-      const runningFirstTime = await isAppRunningFirstTime()
+      const runningFirstTime = await isScreenRunningFirstTime(routesNames.CATEGORIES)
 
       if (runningFirstTime) {
         createDefaultCategories()
