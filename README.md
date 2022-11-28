@@ -1,21 +1,19 @@
-# ✓ ly.st
-
-> lista de compras inteligente
-
-<img src="assets/images/list.png" width="400">
+# ✓ ly.st・lista de compras inteligente
 
 **nunca foi tão fácil economizar tempo e dinheiro.**
-
-✓ Organize sua lista de compras e economize tempo e dinheiro. <br />
-✓ Saiba exatamente o que você comprou e quando <br />
-✓ Saiba quanto você tem gastado nas últimas compras
-✓ Divida os itens da lista em categorias
+<br />
 
 <div>
-<img src="assets/images/insert.png" width="200" />
-<img src="assets/images/list.png" width="200" />
-<img src="assets/images/categories.png" width="200" />
+<img src="assets/images/list.png" width="200" height="365" />
+<img src="assets/images/insert.png" width="200" height="365" />
+<img src="assets/images/list.png" width="200" height="365"/>
+<img src="assets/images/categories.png" width="200" height="365" />
 </div>
+<hr />
+✓ Organize sua lista de compras e economize tempo e dinheiro. <br />
+✓ Saiba exatamente o que você comprou e quando <br />
+✓ Saiba quanto você tem gastado nas últimas compras <br />
+✓ Divida os itens da lista em categorias
 
 <hr />
 💜 Gostou? Retribua com um café ou chá
