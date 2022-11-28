@@ -28,7 +28,7 @@ export default function Expandable({
 
   return (
     <>
-      <View style={tw.style('', style)}>
+      <View style={tw.style(style)}>
         <TouchableOpacity
           onPress={toggleShowContent}
           onLongPress={onLongPress}>

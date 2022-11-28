@@ -20,6 +20,9 @@ module.exports = {
         'thin': ['Thin', 'sans-serif'],
         'black': ['Black', 'sans-serif'],
       },
+      fontSize: {
+        base: '16.5px',
+      },
     },
   },
   plugins: [

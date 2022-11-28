@@ -19,7 +19,7 @@ export default function BottomPanel({
     <View style={tw`flex-1 absolute bottom-0 w-full`}>
       <ProgressBar progress={progress} />
       <View
-        style={tw`flex-1 flex-row px-5 items-center justify-between h-16 ios:h-20 bg-background`}>
+        style={tw`flex-1 flex-row px-5 items-center justify-between h-16 ios:h-22 ios:pb-4 bg-background`}>
         <View style={tw`flex-1 items-start`}>
           <TextPlaceholder text={`total・${list?.items?.length} itens`} />
           <ScreenTitle>{list?.total || 'R$ 0,00'}</ScreenTitle>

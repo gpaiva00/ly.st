@@ -443,17 +443,11 @@ export default function List({ navigation, route }) {
                                 variant="circle-primary"
                                 style={tw`h-6 w-6`}
                               />
-                              <TextInput
-                                value={String(item.quantity || '1')}
-                                onChangeText={quantity =>
-                                  handleOnChangeItemQuantity(quantity, item.id)
-                                }
-                                size="sm"
-                                style={tw`mx-2`}
-                                placeholder="quantidade de itens"
-                                textAlign="center"
-                                keyboardType="numeric"
-                              />
+                              <ContentTitle
+                                style={tw`w-10`}
+                                alignCenter>
+                                {item.quantity || 1}
+                              </ContentTitle>
                               <Button
                                 icon={
                                   <Plus
