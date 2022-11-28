@@ -12,7 +12,10 @@
 ✓ Divida os itens da lista em categorias
 
 <hr />
-💜 Gostou? Retribua com um café ou chá
+
+⚡️ Quer experimentar? Está disponível com o app [Expo](https://expo.dev/accounts/gpaiva/projects/market-list)! <br />
+
+💜 Gostou? Retribua com um café ou chá!
 <br />
 <br/>
 <a href="https://www.buymeacoffee.com/gpaiva" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Coffee" width="150" ></a>
