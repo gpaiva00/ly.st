@@ -9,9 +9,7 @@ interface TitleProps {
 
 export default function ScreenSubtitle({ style, children }: TitleProps) {
   return (
-    <Text
-      numberOfLines={1}
-      style={tw.style('text-gray text-xs', style)}>
+    <Text numberOfLines={1} style={tw.style('text-gray text-xs', style)}>
       {children}
     </Text>
   )

@@ -1,10 +1,9 @@
 import Button from '@components/Button'
-import ContentTitle from '@components/ContentTitle'
 import CustomCurrencyInput from '@components/CurrencyInput'
 import DefaultContainer from '@components/DefaultContainer'
-import Divider from '@components/Divider'
 import Expandable from '@components/Expandable'
 import Header from '@components/Header'
+import HistoryItem from '@components/HistoryItem'
 import ListItem from '@components/ListItem'
 import TextPlaceholder from '@components/TextPlaceholder'
 import tw from '@lib/twrnc'
@@ -12,9 +11,7 @@ import { getList as getListFromStorage, updateList } from '@repositories/List'
 import colors from '@style/colors'
 import { ICON_SIZES } from '@style/sizes'
 import { Category } from '@typings/Category'
-import { ItemsByCategory, List } from '@typings/List'
-import { getCategoryTitleByID } from '@utils/getCategoryByID'
-import { separateByCategory } from '@utils/separateByCategory'
+import { List } from '@typings/List'
 import { ClockClockwise, Question } from 'phosphor-react-native'
 import React, { useEffect, useState } from 'react'
 import { Alert, ScrollView, View } from 'react-native'
@@ -68,7 +65,7 @@ export default function ListConfigs({ navigation, route }) {
               const newList: List = {
                 ...list,
                 items: newItems,
-                total: 0,
+                total: '0',
               }
 
               await updateList(newList)
@@ -106,11 +103,7 @@ export default function ListConfigs({ navigation, route }) {
             onPress={handleGoToHelp}
             variant="transparent"
             icon={
-              <Question
-                color={colors.black}
-                size={ICON_SIZES.MEDIUM}
-                weight="bold"
-              />
+              <Question color={colors.black} size={ICON_SIZES.MEDIUM} weight="bold" />
             }
             size="sm"
           />
@@ -120,7 +113,8 @@ export default function ListConfigs({ navigation, route }) {
       <ScrollView
         style={tw`flex-1`}
         contentContainerStyle={tw`flex-grow pb-4`}
-        showsVerticalScrollIndicator={false}>
+        showsVerticalScrollIndicator={false}
+      >
         <Expandable title="limite de gastos da lista">
           <View style={tw`flex-row items-center justify-between mb-4`}>
             <CustomCurrencyInput
@@ -133,11 +127,7 @@ export default function ListConfigs({ navigation, route }) {
               prefix="R$ "
               size="md"
             />
-            <Button
-              text="alterar"
-              onPress={handleUpdateList}
-              size="md"
-            />
+            <Button text="alterar" onPress={handleUpdateList} size="md" />
           </View>
         </Expandable>
 
@@ -152,62 +142,14 @@ export default function ListConfigs({ navigation, route }) {
             {!list?.history?.length && (
               <View style={tw`flex-1 items-center justify-center py-10`}>
                 <TextPlaceholder
-                  icon={
-                    <ClockClockwise
-                      size={ICON_SIZES.MEDIUM}
-                      color={colors.gray}
-                    />
-                  }
+                  icon={<ClockClockwise size={ICON_SIZES.MEDIUM} color={colors.gray} />}
                   text="sem histórico por enquanto"
                 />
               </View>
             )}
 
             {list?.history?.map(history => (
-              <View
-                key={history.id}
-                style={tw`flex-1 w-full items-start bg-white rounded-xl px-5 py-3 mb-2`}>
-                <TextPlaceholder
-                  style={tw`mb-2`}
-                  text={`compras de ${history.createdAt}`}
-                />
-                {separateByCategory(history.listItems).map(
-                  ({ categoryID, items }: ItemsByCategory) => (
-                    <View
-                      key={categoryID}
-                      style={tw`flex-1 w-full`}>
-                      <ContentTitle
-                        variant="primary"
-                        alignCenter
-                        style={tw`py-2 font-regular`}>
-                        {getCategoryTitleByID(categoryID, categories)}
-                      </ContentTitle>
-
-                      {items.map(item => (
-                        <View
-                          key={item.id}
-                          style={tw`flex-row items-center justify-between`}>
-                          <View style={tw`flex-row`}>
-                            <TextPlaceholder text={item.title} />
-                            {item.quantity > 1 && (
-                              <TextPlaceholder text={` x ${item.quantity}`} />
-                            )}
-                          </View>
-                          <TextPlaceholder text={`R$ ${item.price || 0}`} />
-                        </View>
-                      ))}
-                    </View>
-                  )
-                )}
-
-                <View style={tw`w-full mt-4 items-start`}>
-                  <View style={tw`w-full mb-2`}>
-                    <Divider />
-                  </View>
-                  <TextPlaceholder text="total" />
-                  <ContentTitle>{history.total}</ContentTitle>
-                </View>
-              </View>
+              <HistoryItem history={history} categories={categories} />
             ))}
           </View>
         </Expandable>

@@ -20,29 +20,14 @@ export default function Onboarding({ navigation }) {
       <ScreenTitle style={tw`text-primary`}>ly.st</ScreenTitle>
 
       <Swiper
-        // showsButtons
         buttonWrapperStyle={tw`text-primary`}
         dotColor={colors.lightGray}
         activeDotColor={colors.black}
-        nextButton={
-          <CaretRight
-            size={ICON_SIZES.DEFAULT}
-            color={colors.gray}
-            // weight="bold"
-          />
-        }
-        prevButton={
-          <CaretLeft
-            size={ICON_SIZES.DEFAULT}
-            color={colors.gray}
-            // weight="bold"
-          />
-        }>
+        nextButton={<CaretRight size={ICON_SIZES.DEFAULT} color={colors.gray} />}
+        prevButton={<CaretLeft size={ICON_SIZES.DEFAULT} color={colors.gray} />}
+      >
         <View style={tw`flex-1 items-center justify-center`}>
-          <Image
-            source={OnboardingImage1}
-            style={tw`w-64 h-64`}
-          />
+          <Image source={OnboardingImage1} style={tw`w-64 h-64`} />
 
           <ScreenTitle>lista inteligente</ScreenTitle>
           <Text style={tw`text-gray text-center font-regular text-base mt-3`}>
@@ -51,21 +36,14 @@ export default function Onboarding({ navigation }) {
           </Text>
         </View>
         <View style={tw`flex-1 items-center justify-center`}>
-          <Image
-            source={OnboardingImage2}
-            style={tw`w-64 h-64`}
-          />
+          <Image source={OnboardingImage2} style={tw`w-64 h-64`} />
 
           <ScreenTitle>histórico de compras</ScreenTitle>
           <Text style={tw`text-gray text-center font-regular text-base mt-3 mb-6`}>
             Saiba exatamente o que você comprou e quando. Assim fica fácil de saber quanto
             você tem gastado nos últimos meses.
           </Text>
-          <Button
-            onPress={handleGoToHome}
-            text="bora lá!"
-            size="lg"
-          />
+          <Button onPress={handleGoToHome} text="bora lá!" size="lg" />
         </View>
       </Swiper>
     </DefaultContainer>

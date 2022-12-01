@@ -39,8 +39,8 @@ export default function CustomCurrencyInput({
 
 interface CustomCurrencyInputProps extends CurrencyInputProps {
   placeholder: string
-  value?: number
+  value: number
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'full'
-  style?: string
+  style?: any
   onChangeValue: (value: number) => void
 }

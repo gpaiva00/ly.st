@@ -32,21 +32,18 @@ export default function Button({
       )}
       onPress={onPress}
       disabled={isLoading}
-      {...props}>
+      {...props}
+    >
       {icon && icon}
-      {isLoading && (
-        <ActivityIndicator
-          size="small"
-          color="white"
-        />
-      )}
+      {isLoading && <ActivityIndicator size="small" color="white" />}
       {text && !isLoading && (
         <Text
           style={tw.style('text-base font-semibold', {
             'text-primary': variant === 'secondary' || variant === 'transparent',
             'text-white': variant === 'primary',
             'ml-2': !!icon,
-          })}>
+          })}
+        >
           {text}
         </Text>
       )}
@@ -59,7 +56,7 @@ interface ButtonProps {
   onPress: (...args) => void
   icon?: JSX.Element
   isLoading?: boolean
-  style?: string
+  style?: any
   variant?: 'primary' | 'secondary' | 'transparent' | 'circle-primary'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'full'
 }

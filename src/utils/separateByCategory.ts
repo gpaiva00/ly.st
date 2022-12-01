@@ -15,7 +15,6 @@ export const separateByCategory = (data: any) => {
 
 }
 
-
 /**
  * { 
  *    category: "comidas",

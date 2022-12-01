@@ -20,18 +20,17 @@ export default function ListItem({
   style,
 }: ListItemProps) {
   return (
-    <TouchableOpacity
-      key={item.id}
-      onPress={onPress}
-      onLongPress={onLongPress}>
+    <TouchableOpacity key={item.id} onPress={onPress} onLongPress={onLongPress}>
       <View
         style={tw.style('flex-row items-center justify-between', style, {
           height: INPUT_SIZE,
-        })}>
+        })}
+      >
         <View
           style={tw.style('flex-row', {
             'flex-1 items-center justify-center': alignCenter,
-          })}>
+          })}
+        >
           {icon && <View style={tw`mr-2`}>{icon}</View>}
           <ListTitle variant={variant}>{item.title}</ListTitle>
         </View>

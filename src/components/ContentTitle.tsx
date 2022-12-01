@@ -17,7 +17,8 @@ export default function ContentTitle({
           'text-center': alignCenter,
         },
         style
-      )}>
+      )}
+    >
       {children}
     </Text>
   )

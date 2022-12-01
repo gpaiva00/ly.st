@@ -18,7 +18,8 @@ export default function ListTitle({
           'line-through opacity-50 text-gray': variant === 'completed',
         },
         style
-      )}>
+      )}
+    >
       {children}
     </Text>
   )

@@ -94,11 +94,7 @@ export default function Home({ navigation }) {
             onPress={handleGoToCategories}
             variant="transparent"
             icon={
-              <TagSimple
-                size={ICON_SIZES.MEDIUM}
-                color={colors.black}
-                weight="bold"
-              />
+              <TagSimple size={ICON_SIZES.MEDIUM} color={colors.black} weight="bold" />
             }
             size="sm"
           />
@@ -115,10 +111,7 @@ export default function Home({ navigation }) {
           returnKeyLabel="Pronto"
           style={tw`w-[200px]`}
         />
-        <Button
-          text="adicionar"
-          onPress={handleAddList}
-        />
+        <Button text="adicionar" onPress={handleAddList} />
       </View>
 
       <Divider />
@@ -126,7 +119,8 @@ export default function Home({ navigation }) {
       <ScrollView
         style={tw`flex-1`}
         contentContainerStyle={tw`flex-grow pb-4`}
-        showsVerticalScrollIndicator={false}>
+        showsVerticalScrollIndicator={false}
+      >
         {!lists.length && (
           <View style={tw`flex-1 justify-center items-center`}>
             <TextPlaceholder text="sem listas por enquanto" />

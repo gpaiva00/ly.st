@@ -21,10 +21,10 @@ import {
   List as ListTyping,
   ListItem as ListItemTyping,
 } from '@typings/List'
+import calculateListProgress from '@utils/calculateListProgress'
 import { calculateListTotal } from '@utils/calculateListTotal'
-import calculateProgress from '@utils/calculateProgress'
 import generateID from '@utils/generateID'
-import { getCategoryTitleByID } from '@utils/getCategoryByID'
+import { getCategoryTitleByID } from '@utils/getCategoryTitleByID'
 import { separateByCategory } from '@utils/separateByCategory'
 import { GearSix, Minus, Plus, TagSimple } from 'phosphor-react-native'
 import React, { useEffect, useState } from 'react'
@@ -120,7 +120,7 @@ export default function List({ navigation, route }) {
   const getList = async () => {
     try {
       const listFromStorage = await getListFromStorage(listParam.id)
-      const newListProgress = calculateProgress(listFromStorage)
+      const newListProgress = calculateListProgress(listFromStorage)
       setListProgress(newListProgress)
       setList(listFromStorage)
     } catch (error) {
@@ -218,7 +218,7 @@ export default function List({ navigation, route }) {
         total,
       }
 
-      const newListProgress = calculateProgress(newList)
+      const newListProgress = calculateListProgress(newList)
 
       if (newListProgress >= 100) Toast.show('atenção: limite de gastos atingido')
 
@@ -270,7 +270,7 @@ export default function List({ navigation, route }) {
                 total: 'R$ 0,00',
               }
 
-              const newListProgress = calculateProgress(newList)
+              const newListProgress = calculateListProgress(newList)
 
               setList(newList)
               updateList(newList)
@@ -304,11 +304,7 @@ export default function List({ navigation, route }) {
               onPress={handleGoToConfigs}
               variant="transparent"
               icon={
-                <GearSix
-                  size={ICON_SIZES.MEDIUM}
-                  color={colors.black}
-                  weight="bold"
-                />
+                <GearSix size={ICON_SIZES.MEDIUM} color={colors.black} weight="bold" />
               }
               size="sm"
             />
@@ -322,7 +318,8 @@ export default function List({ navigation, route }) {
           title="inserir item"
           highlight
           style={tw`px-5`}
-          onToggle={handleOnToggleInsertItemContainer}>
+          onToggle={handleOnToggleInsertItemContainer}
+        >
           <View>
             <View style={tw`items-start`}>
               <TextInput
@@ -340,7 +337,8 @@ export default function List({ navigation, route }) {
               <ScrollView
                 style={tw`my-2`}
                 horizontal
-                showsHorizontalScrollIndicator={false}>
+                showsHorizontalScrollIndicator={false}
+              >
                 {categories.map(category => (
                   <Pill
                     onPress={() => handleOnPressCategory(category.id)}
@@ -351,12 +349,7 @@ export default function List({ navigation, route }) {
                 ))}
                 <Pill
                   onPress={handleGoToCategories}
-                  icon={
-                    <TagSimple
-                      size={ICON_SIZES.SMALL}
-                      color={colors.background}
-                    />
-                  }
+                  icon={<TagSimple size={ICON_SIZES.SMALL} color={colors.background} />}
                   variant="primary"
                 />
               </ScrollView>
@@ -373,11 +366,13 @@ export default function List({ navigation, route }) {
         {/* items */}
         <KeyboardAvoidingView
           style={tw`flex-1`}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
           <ScrollView
             style={tw`flex-1`}
             contentContainerStyle={tw`flex-grow`}
-            showsVerticalScrollIndicator={false}>
+            showsVerticalScrollIndicator={false}
+          >
             {showOverlay && (
               <View style={tw`absolute w-full h-full z-50 bg-black opacity-70`} />
             )}
@@ -395,7 +390,8 @@ export default function List({ navigation, route }) {
                     <ContentTitle
                       variant="primary"
                       alignCenter
-                      style={tw`py-4 font-regular`}>
+                      style={tw`py-4 font-regular`}
+                    >
                       {getCategoryTitleByID(categoryID, categories)}
                     </ContentTitle>
 
@@ -406,7 +402,8 @@ export default function List({ navigation, route }) {
                         key={item.id}
                         title={item.title}
                         variant={item.completed ? 'completed' : 'default'}
-                        onLongPress={() => handleOnLongPressItem(item.id)}>
+                        onLongPress={() => handleOnLongPressItem(item.id)}
+                      >
                         <View style={tw`flex-row px-5 items-center mb-5`}>
                           {/* price */}
                           <View style={tw`flex-1 items-start`}>
@@ -443,9 +440,7 @@ export default function List({ navigation, route }) {
                                 variant="circle-primary"
                                 style={tw`h-6 w-6`}
                               />
-                              <ContentTitle
-                                style={tw`w-10`}
-                                alignCenter>
+                              <ContentTitle style={tw`w-10`} alignCenter>
                                 {item.quantity || 1}
                               </ContentTitle>
                               <Button

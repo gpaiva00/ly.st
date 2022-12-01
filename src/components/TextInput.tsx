@@ -41,5 +41,5 @@ interface CustomTextInputProps extends TextInputProps {
   placeholder: string
   value?: string
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'full'
-  style?: string
+  style?: any
 }

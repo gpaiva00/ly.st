@@ -29,29 +29,22 @@ export default function Expandable({
   return (
     <>
       <View style={tw.style(style)}>
-        <TouchableOpacity
-          onPress={toggleShowContent}
-          onLongPress={onLongPress}>
+        <TouchableOpacity onPress={toggleShowContent} onLongPress={onLongPress}>
           <View style={tw`flex-row items-center justify-between py-3`}>
             {highlight ? (
-              <ContentTitle
-                variant="primary"
-                style={tw.style(titleStyle)}>
+              <ContentTitle variant="primary" style={tw.style(titleStyle)}>
                 {title}
               </ContentTitle>
             ) : (
               <ListTitle
                 variant={showContent ? 'default' : variant}
-                style={tw.style(titleStyle)}>
+                style={tw.style(titleStyle)}
+              >
                 {title}
               </ListTitle>
             )}
             {variant === 'completed' && !showContent ? (
-              <Check
-                size={ICON_SIZES.SMALL}
-                color={colors.completed}
-                weight="bold"
-              />
+              <Check size={ICON_SIZES.SMALL} color={colors.primary} weight="bold" />
             ) : (
               <CaretRight
                 size={ICON_SIZES.SMALL}
@@ -80,7 +73,7 @@ interface ExpandableProps {
   children: React.ReactNode
   title: string
   highlight?: boolean
-  style?: string
+  style?: any
   titleStyle?: string
   onToggle?: (showContent: boolean) => void
   onLongPress?: () => void

@@ -1,11 +1,11 @@
 module.exports = {
-  trailingComma: "es5",
+  trailingComma: 'es5',
   printWidth: 90,
   semi: false,
   singleQuote: true,
-  endOfLine: "lf",
+  endOfLine: 'lf',
   bracketSpacing: true,
   bracketSameLine: true,
-  arrowParens: "avoid",
+  arrowParens: 'avoid',
   singleAttributePerLine: true,
-};
+}

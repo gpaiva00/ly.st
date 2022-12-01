@@ -48,6 +48,6 @@ interface HeaderProps {
   title: string
   subtitle?: string
   options?: JSX.Element
-  style?: string
+  style?: any
   onPressBackButton?: () => void
 }

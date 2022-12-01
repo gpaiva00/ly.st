@@ -14,13 +14,14 @@ export default function ScreenTitle({ style, children }: TitleProps) {
           'text-2xl flex-row max-w-[250px]': children.length > CHAR_TITLE_LIMIT,
         },
         style
-      )}>
+      )}
+    >
       {children}
     </Text>
   )
 }
 
 interface TitleProps {
-  style?: string
+  style?: any
   children: string | React.ReactNode
 }

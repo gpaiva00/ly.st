@@ -22,7 +22,8 @@ export default function Pill({
         }
       )}
       disabled={disabled}
-      onPress={onPress}>
+      onPress={onPress}
+    >
       {text && (
         <Text
           style={tw.style('text-sm', {
@@ -30,7 +31,8 @@ export default function Pill({
             'text-primary': variant === 'secondary' || variant === 'default',
             'mr-2': !!icon,
             'text-zinc-400': disabled,
-          })}>
+          })}
+        >
           {text}
         </Text>
       )}
