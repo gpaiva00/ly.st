@@ -91,7 +91,10 @@ export default function Categories({ navigation }) {
 
   return (
     <DefaultContainer>
-      <Header title="categorias" onPressBackButton={handleGoBack} />
+      <Header
+        title="categorias"
+        onPressBackButton={handleGoBack}
+      />
 
       <View style={tw`flex-row items-center justify-between mb-4`}>
         <TextInput
@@ -101,9 +104,13 @@ export default function Categories({ navigation }) {
           spellCheck={false}
           onSubmitEditing={handleAddCategory}
           returnKeyLabel="Pronto"
-          style={tw`w-[200px]`}
+          style={tw`w-[220px]`}
         />
-        <Button text="adicionar" onPress={handleAddCategory} size="md" />
+        <Button
+          text="adicionar"
+          onPress={handleAddCategory}
+          size="md"
+        />
       </View>
 
       <Divider />
@@ -111,8 +118,7 @@ export default function Categories({ navigation }) {
       <ScrollView
         style={tw`flex-1`}
         contentContainerStyle={tw`flex-grow pb-4`}
-        showsVerticalScrollIndicator={false}
-      >
+        showsVerticalScrollIndicator={false}>
         {!categories.length && (
           <View style={tw`flex-1 justify-center items-center`}>
             <TextPlaceholder

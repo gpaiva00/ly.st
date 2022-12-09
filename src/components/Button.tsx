@@ -16,7 +16,7 @@ export default function Button({
   return (
     <TouchableOpacity
       style={tw.style(
-        'flex-row items-center justify-center rounded-xl shadow-lg',
+        'flex-row items-center justify-center rounded-xl shadow-md',
         {
           'bg-transparent p-0': variant === 'transparent',
           'border border-primary': variant === 'secondary',
@@ -32,18 +32,21 @@ export default function Button({
       )}
       onPress={onPress}
       disabled={isLoading}
-      {...props}
-    >
+      {...props}>
       {icon && icon}
-      {isLoading && <ActivityIndicator size="small" color="white" />}
+      {isLoading && (
+        <ActivityIndicator
+          size="small"
+          color="white"
+        />
+      )}
       {text && !isLoading && (
         <Text
           style={tw.style('text-base font-semibold', {
             'text-primary': variant === 'secondary' || variant === 'transparent',
             'text-white': variant === 'primary',
             'ml-2': !!icon,
-          })}
-        >
+          })}>
           {text}
         </Text>
       )}

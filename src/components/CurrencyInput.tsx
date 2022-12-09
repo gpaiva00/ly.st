@@ -3,6 +3,7 @@ import CurrencyInput, { CurrencyInputProps } from 'react-native-currency-input'
 import tw from '@lib/twrnc'
 import colors from '@style/colors'
 import { INPUT_SIZE } from '@style/sizes'
+import { useState } from 'react'
 
 export default function CustomCurrencyInput({
   placeholder,
@@ -12,11 +13,16 @@ export default function CustomCurrencyInput({
   style,
   ...props
 }: CustomCurrencyInputProps) {
+  const [isFocused, setIsFocused] = useState(false)
+
+  const toggleFocus = () => setIsFocused(!isFocused)
+
   return (
     <CurrencyInput
       style={tw.style(
         'border border-lightGray rounded-xl px-2 w-full shadow-lg',
         {
+          'border-primary': isFocused,
           'w-1/6': size === 'xs',
           'w-[50px]': size === 'sm',
           'w-1/3': size === 'md',
@@ -32,6 +38,8 @@ export default function CustomCurrencyInput({
       onChangeValue={onChangeValue}
       autoCapitalize="none"
       clearButtonMode="while-editing"
+      onFocus={toggleFocus}
+      onBlur={toggleFocus}
       {...props}
     />
   )

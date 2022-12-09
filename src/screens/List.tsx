@@ -304,7 +304,11 @@ export default function List({ navigation, route }) {
               onPress={handleGoToConfigs}
               variant="transparent"
               icon={
-                <GearSix size={ICON_SIZES.MEDIUM} color={colors.black} weight="bold" />
+                <GearSix
+                  size={ICON_SIZES.MEDIUM}
+                  color={colors.black}
+                  weight="bold"
+                />
               }
               size="sm"
             />
@@ -318,8 +322,7 @@ export default function List({ navigation, route }) {
           title="inserir item"
           highlight
           style={tw`px-5`}
-          onToggle={handleOnToggleInsertItemContainer}
-        >
+          onToggle={handleOnToggleInsertItemContainer}>
           <View>
             <View style={tw`items-start`}>
               <TextInput
@@ -337,8 +340,7 @@ export default function List({ navigation, route }) {
               <ScrollView
                 style={tw`my-2`}
                 horizontal
-                showsHorizontalScrollIndicator={false}
-              >
+                showsHorizontalScrollIndicator={false}>
                 {categories.map(category => (
                   <Pill
                     onPress={() => handleOnPressCategory(category.id)}
@@ -349,7 +351,12 @@ export default function List({ navigation, route }) {
                 ))}
                 <Pill
                   onPress={handleGoToCategories}
-                  icon={<TagSimple size={ICON_SIZES.SMALL} color={colors.background} />}
+                  icon={
+                    <TagSimple
+                      size={ICON_SIZES.SMALL}
+                      color={colors.background}
+                    />
+                  }
                   variant="primary"
                 />
               </ScrollView>
@@ -366,13 +373,11 @@ export default function List({ navigation, route }) {
         {/* items */}
         <KeyboardAvoidingView
           style={tw`flex-1`}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        >
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <ScrollView
             style={tw`flex-1`}
             contentContainerStyle={tw`flex-grow`}
-            showsVerticalScrollIndicator={false}
-          >
+            showsVerticalScrollIndicator={false}>
             {showOverlay && (
               <View style={tw`absolute w-full h-full z-50 bg-black opacity-70`} />
             )}
@@ -390,8 +395,7 @@ export default function List({ navigation, route }) {
                     <ContentTitle
                       variant="primary"
                       alignCenter
-                      style={tw`py-4 font-regular`}
-                    >
+                      style={tw`py-4 font-regular`}>
                       {getCategoryTitleByID(categoryID, categories)}
                     </ContentTitle>
 
@@ -402,8 +406,7 @@ export default function List({ navigation, route }) {
                         key={item.id}
                         title={item.title}
                         variant={item.completed ? 'completed' : 'default'}
-                        onLongPress={() => handleOnLongPressItem(item.id)}
-                      >
+                        onLongPress={() => handleOnLongPressItem(item.id)}>
                         <View style={tw`flex-row px-5 items-center mb-5`}>
                           {/* price */}
                           <View style={tw`flex-1 items-start`}>
@@ -438,9 +441,11 @@ export default function List({ navigation, route }) {
                                   )
                                 }
                                 variant="circle-primary"
-                                style={tw`h-6 w-6`}
+                                style={tw`h-7 w-7`}
                               />
-                              <ContentTitle style={tw`w-10`} alignCenter>
+                              <ContentTitle
+                                style={tw`w-10`}
+                                alignCenter>
                                 {item.quantity || 1}
                               </ContentTitle>
                               <Button
@@ -457,7 +462,7 @@ export default function List({ navigation, route }) {
                                   )
                                 }
                                 variant="circle-primary"
-                                style={tw`h-6 w-6`}
+                                style={tw`h-7 w-7`}
                               />
                             </View>
                           </View>

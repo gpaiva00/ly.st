@@ -3,7 +3,7 @@ import Divider from '@components/Divider'
 import TextPlaceholder from '@components/TextPlaceholder'
 import tw from '@lib/twrnc'
 import { Category } from '@typings/Category'
-import { HistoryItem } from '@typings/History'
+import { HistoryItem as HistoryItemTyping } from '@typings/History'
 import { ItemsByCategory } from '@typings/List'
 import { getCategoryTitleByID } from '@utils/getCategoryTitleByID'
 import { separateByCategory } from '@utils/separateByCategory'
@@ -49,6 +49,6 @@ export default function HistoryItem({ history, categories }: HistoryItemProps) {
 }
 
 interface HistoryItemProps {
-  history: HistoryItem
+  history: HistoryItemTyping
   categories: Category[]
 }

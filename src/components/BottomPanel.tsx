@@ -22,7 +22,11 @@ export default function BottomPanel({
         style={tw`flex-1 flex-row px-5 items-center justify-between h-16 ios:h-22 ios:pb-4 bg-background`}
       >
         <View style={tw`flex-1 items-start`}>
-          <TextPlaceholder text={`total・${list?.items?.length} itens`} />
+          <TextPlaceholder
+            text={`total・${list?.items?.length} ${
+              list.items.length > 1 ? 'itens' : 'item'
+            }`}
+          />
           <ScreenTitle>{list?.total || 'R$ 0,00'}</ScreenTitle>
         </View>
 
