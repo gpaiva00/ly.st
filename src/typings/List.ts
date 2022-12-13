@@ -6,6 +6,7 @@ export interface List {
   spendingLimit: number;
   items: ListItem[];
   total: string;
+  totalItems: number;
   history: HistoryItem[];
 }
 

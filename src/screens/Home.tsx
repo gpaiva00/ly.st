@@ -55,13 +55,13 @@ export default function Home({ navigation }) {
     navigation.navigate(routeNames.LIST, { listParam: list })
 
   const handleOnLongPressItem = (item: List) => {
-    Alert.alert('remover lista', 'tem certeza que deseja remover essa lista?', [
+    Alert.alert('apagar lista', 'tem certeza que deseja apagar essa lista?', [
       {
         text: 'cancelar',
         style: 'cancel',
       },
       {
-        text: 'sim',
+        text: 'sim, apagar',
         onPress: () => {
           try {
             deleteList(item.id).then(() => {
@@ -105,7 +105,7 @@ export default function Home({ navigation }) {
         }
       />
 
-      <View style={tw`flex-row items-center justify-between mb-4`}>
+      <View style={tw`flex-row items-center justify-between mb-4 pb-4`}>
         <TextInput
           placeholder="nome da lista"
           value={newList?.title}
@@ -113,7 +113,7 @@ export default function Home({ navigation }) {
           spellCheck={false}
           onSubmitEditing={handleAddList}
           returnKeyLabel="Pronto"
-          style={tw`w-[220px]`}
+          style={tw`w-[200px]`}
         />
         <Button
           text="adicionar"

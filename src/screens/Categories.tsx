@@ -104,7 +104,7 @@ export default function Categories({ navigation }) {
           spellCheck={false}
           onSubmitEditing={handleAddCategory}
           returnKeyLabel="Pronto"
-          style={tw`w-[220px]`}
+          style={tw`w-[200px]`}
         />
         <Button
           text="adicionar"

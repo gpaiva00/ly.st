@@ -192,9 +192,14 @@ export default function List({ navigation, route }) {
         return item
       })
 
+      const totalItems = newItems.reduce((acc, item) => {
+        return acc + item.quantity
+      }, 0)
+
       const newList = {
         ...list,
         items: newItems,
+        totalItems,
       }
 
       setList(newList)
@@ -267,6 +272,7 @@ export default function List({ navigation, route }) {
                 ...list,
                 history: [...(list.history || []), historyItem],
                 items: newItems,
+                totalItems: 0,
                 total: 'R$ 0,00',
               }
 

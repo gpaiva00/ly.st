@@ -14,23 +14,32 @@ export default function HistoryItem({ history, categories }: HistoryItemProps) {
   return (
     <View
       key={history.id}
-      style={tw`flex-1 w-full items-start bg-white rounded-xl px-5 py-3 mb-2`}
-    >
-      <TextPlaceholder style={tw`mb-2`} text={`compras de ${history.createdAt}`} />
+      style={tw`flex-1 w-full items-start bg-white rounded-xl px-5 py-3 my-2`}>
+      <TextPlaceholder
+        style={tw`mb-2`}
+        text={`compras de ${history.createdAt}`}
+      />
       {separateByCategory(history.listItems).map(
         ({ categoryID, items }: ItemsByCategory) => (
-          <View key={categoryID} style={tw`flex-1 w-full`}>
-            <ContentTitle variant="primary" alignCenter style={tw`py-2 font-regular`}>
+          <View
+            key={categoryID}
+            style={tw`flex-1 w-full`}>
+            <ContentTitle
+              variant="primary"
+              alignCenter
+              style={tw`py-2 font-regular`}>
               {getCategoryTitleByID(categoryID, categories)}
             </ContentTitle>
 
             {items.map(item => (
-              <View key={item.id} style={tw`flex-row items-center justify-between`}>
+              <View
+                key={item.id}
+                style={tw`flex-row items-center justify-between`}>
                 <View style={tw`flex-row`}>
                   <TextPlaceholder text={item.title} />
                   {item.quantity > 1 && <TextPlaceholder text={` x ${item.quantity}`} />}
                 </View>
-                <TextPlaceholder text={`R$ ${item.price || 0}`} />
+                <TextPlaceholder text={`R$ ${item.price * item.quantity || 0}`} />
               </View>
             ))}
           </View>

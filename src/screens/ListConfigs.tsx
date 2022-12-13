@@ -103,7 +103,11 @@ export default function ListConfigs({ navigation, route }) {
             onPress={handleGoToHelp}
             variant="transparent"
             icon={
-              <Question color={colors.black} size={ICON_SIZES.MEDIUM} weight="bold" />
+              <Question
+                color={colors.black}
+                size={ICON_SIZES.MEDIUM}
+                weight="bold"
+              />
             }
             size="sm"
           />
@@ -113,10 +117,9 @@ export default function ListConfigs({ navigation, route }) {
       <ScrollView
         style={tw`flex-1`}
         contentContainerStyle={tw`flex-grow pb-4`}
-        showsVerticalScrollIndicator={false}
-      >
+        showsVerticalScrollIndicator={false}>
         <Expandable title="limite de gastos da lista">
-          <View style={tw`flex-row items-center justify-between mb-4`}>
+          <View style={tw`flex-row items-center justify-between mb-4 mt-2`}>
             <CustomCurrencyInput
               placeholder="R$ 0,00"
               value={spendingLimit}
@@ -127,7 +130,11 @@ export default function ListConfigs({ navigation, route }) {
               prefix="R$ "
               size="md"
             />
-            <Button text="alterar" onPress={handleUpdateList} size="md" />
+            <Button
+              text="alterar"
+              onPress={handleUpdateList}
+              size="md"
+            />
           </View>
         </Expandable>
 
@@ -142,14 +149,23 @@ export default function ListConfigs({ navigation, route }) {
             {!list?.history?.length && (
               <View style={tw`flex-1 items-center justify-center py-10`}>
                 <TextPlaceholder
-                  icon={<ClockClockwise size={ICON_SIZES.MEDIUM} color={colors.gray} />}
+                  icon={
+                    <ClockClockwise
+                      size={ICON_SIZES.MEDIUM}
+                      color={colors.gray}
+                    />
+                  }
                   text="sem histórico por enquanto"
                 />
               </View>
             )}
 
             {list?.history?.map(history => (
-              <HistoryItem history={history} categories={categories} />
+              <HistoryItem
+                key={history.id}
+                history={history}
+                categories={categories}
+              />
             ))}
           </View>
         </Expandable>
