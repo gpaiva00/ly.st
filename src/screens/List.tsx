@@ -11,7 +11,7 @@ import TextInput from '@components/TextInput'
 import TextPlaceholder from '@components/TextPlaceholder'
 import tw from '@lib/twrnc'
 import { getCategories as getCategoriesFromStorage } from '@repositories/Category'
-import { getList as getListFromStorage, updateList } from '@repositories/List'
+import { getList as getListFromStorage, updateListFromDB as updateListFromDB } from '@repositories/List'
 import colors from '@style/colors'
 import { ICON_SIZES } from '@style/sizes'
 import { Category } from '@typings/Category'
@@ -86,7 +86,8 @@ export default function List({ navigation, route }) {
       }
 
       setList(newList)
-      updateList(newList)
+      updateListFromDB(newList)
+      updateListTotal(newList)
       clearFields()
       Toast.show('item adicionado com sucesso')
     } catch (error) {
@@ -228,7 +229,7 @@ export default function List({ navigation, route }) {
       if (newListProgress >= 100) Toast.show('atenção: limite de gastos atingido')
 
       setList(newList)
-      updateList(newList)
+      updateListFromDB(newList)
       setListProgress(newListProgress)
     } catch (error) {
       console.log(error)
@@ -279,7 +280,7 @@ export default function List({ navigation, route }) {
               const newListProgress = calculateListProgress(newList)
 
               setList(newList)
-              updateList(newList)
+              updateListFromDB(newList)
               setListProgress(newListProgress)
             } catch (error) {
               console.log(error)

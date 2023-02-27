@@ -17,14 +17,13 @@ export default function BottomPanel({
 
   return (
     <View style={tw`flex-1 absolute bottom-0 w-full`}>
-      <ProgressBar progress={progress} />
+      {!!progress && <ProgressBar progress={progress} />}
       <View
         style={tw`flex-1 flex-row px-5 items-center justify-between h-16 ios:h-22 ios:pb-4 bg-background`}>
         <View style={tw`flex-1 items-start`}>
           <TextPlaceholder
-            text={`total・${list?.totalItems} ${
-              list.totalItems > 1 || list.totalItems === 0 ? 'itens' : 'item'
-            }`}
+            text={`total・${list?.totalItems} ${list.totalItems > 1 || list.totalItems === 0 ? 'itens' : 'item'
+              }`}
           />
           <ScreenTitle>{list?.total || 'R$ 0,00'}</ScreenTitle>
         </View>

@@ -36,7 +36,7 @@ export default function ListConfigs({ navigation, route }) {
       }
 
       await updateList(newList)
-      Toast.show('limite atualizado com sucesso')
+      Toast.show('limite alterado com sucesso')
     } catch (error) {
       console.log(error)
     }

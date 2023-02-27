@@ -40,7 +40,15 @@ export default function Home({ navigation }) {
     try {
       if (!newList?.title) return Toast.show('insira um nome para sua lista')
 
-      const newListWithId: List = { ...newList, id: generateID(), items: [] }
+      const newListWithId: List = {
+        ...newList,
+        id: generateID(),
+        items: [],
+        total: 'R$ 0,00',
+        totalItems: 0,
+        spendingLimit: 0,
+        history: [],
+      }
 
       setLists([...lists, newListWithId])
       setNewList({} as List)
